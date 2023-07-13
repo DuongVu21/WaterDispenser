@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WaterDispenser"
+    "\\CentralServerService",
+    "\\WaterDispenserService"
   ],
-  "SelectedNode": "\\WaterDispenser\\WaterDispenser.py",
+  "SelectedNode": "\\WaterDispenserService\\dispense_routine.py",
   "PreviewInSolutionExplorer": false
 }

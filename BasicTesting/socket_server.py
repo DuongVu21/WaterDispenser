@@ -1,7 +1,7 @@
 import socket
 
 class ServerCommunicator():
-    def __init__(self, dataType,host, port):
+    def __init__(self, host = 'localhost', port = 12345, dataType = 'message'):
         self.dataType = dataType
         self.host = host
         self.port = port
@@ -9,7 +9,9 @@ class ServerCommunicator():
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((self.host, self.port))
         self.s.listen(5)
+        print("Listening...")
         self.conn, self.address = self.s.accept()
+        print("Connected")
             
     def __del__(self):
         if self.conn != None:
@@ -21,19 +23,14 @@ class ServerCommunicator():
         if (self.dataType == "image"):
             self.conn.sendall(message.encode())
 
+    def recv_message(self):
+        if self.dataType == "image":
+            return self.conn.recv(15000)
+        elif self.dataType == "message":
+            return self.conn.recv(1024).decode()
+
 
 if __name__ == "__main__":
     communicator = ServerCommunicator(dataType="image", host="localhost", port=12345)
     
-    while True:
-        communicator.send_message("Boo")
-
-    # message_communicator = ServerCommunicator(dataType="message", host= "DESKTOP-UTI5DR3", port = 12346)
-    # while True:
-    #     number_of_people = random.randint(1,20)
-    #     entry = random.randint(1,20)
-    #     exit = random.randint(1,20)
-    #     temp = random.randint(35,60)
-    #     humidity = random.randint(50,70)
-    #     message_communicator.send_message("{number_of_people},{entry},{exit},{temp},{humidity}".format(number_of_people = number_of_people, entry=entry, exit=exit, temp=temp, humidity=humidity))
-    #     time.sleep(1)
+    communicator.send_message("On")
