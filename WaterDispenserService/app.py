@@ -7,30 +7,31 @@ from dispense_routine import Dispense
 #from dispense_routine_itg import Dispense
 import threading
 
-host= "10.247.209.233"
+host= "10.247.197.240"
 port = 28910
-
-tries = 0
 
 Exit = False
 message_communicator = ClientCommunicator(host, port, "message")
 
 while Exit != True:
-    volume = 0
-    
-    try:
-        volume = float(message_communicator.recv_message())
-    except socket.error:
-        tries+=1
-        time.sleep(1)
+    volume = float(message_communicator.recv_message())
 
-    if volume > 0:
-        dispenseRoutine = Dispense(volume)
-        dispenseRoutine.start()
-        tries = 0
-
-    if tries >= 10:
+    # End program if volume received is 0 or less
+    if volume <= 0:
         Exit = True
+
+    #Dispense water in 100mL increments
+    else: 
+        while volume > 0:
+            if (volume > 0.1):
+                dispenseRoutine = Dispense(0.1)
+                dispenseRoutine.start()
+                volume -= 0.1
+            else:
+                dispenseRoutine = Dispense(volume)
+                dispenseRoutine.start()
+                volume = 0
+            time.sleep(1)
 
 
 
