@@ -1,9 +1,35 @@
+from flask import Flask, render_template, request, url_for, flash, redirect # Flask is the web framework
+import sqlite3 # sqlite3 is the database framework
+from werkzeug.exceptions import abort # For handling errors
 
-from socket_client import ClientCommunicator
-from flask import Flask, render_template, Response
-import threading
+# Function to connect to database
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
-message_communicator = ClientCommunicator(dataType="message",host= "10.247.169.31", port = 28910)
-message_communicator.send_message("R,0.25,5,G,4,4,Y,6,4")
+# Function for reading database
+def get_user(user_id):
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE id = ?',
+                        (user_id,)).fetchone()
+    conn.close()
+    if user is None:
+        abort(404)
+    return user
 
-#Look for refresh rate 
+# Create a webapp instance
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your secret key'
+
+# Each route corresponse with a link
+# First one is the home page
+@app.route('/')
+def index():
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM users').fetchall()
+    conn.close()
+    return render_template('index.html', users=users)
+
+if __name__ =="__main__":
+    app.run(debug = False)

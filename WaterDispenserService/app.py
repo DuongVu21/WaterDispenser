@@ -3,11 +3,12 @@ from ast import Try
 import socket, time
 from socket_client import ClientCommunicator
 from flask import Flask, render_template, Response
-from dispense_routine import Dispense
+#from dispense_routine import Dispense
 #from dispense_routine_itg import Dispense
+from dispense_routine_time import Dispense
 import threading
 
-host= "10.247.197.240"
+host= "10.247.197.70"
 port = 28910
 
 Exit = False
@@ -22,16 +23,24 @@ while Exit != True:
 
     #Dispense water in 100mL increments
     else: 
-        while volume > 0:
-            if (volume > 0.1):
-                dispenseRoutine = Dispense(0.1)
-                dispenseRoutine.start()
-                volume -= 0.1
-            else:
-                dispenseRoutine = Dispense(volume)
-                dispenseRoutine.start()
-                volume = 0
-            time.sleep(1)
+        print("Dispensing %.3f L of water" % (volume))
+        dispenseRoutine = Dispense(volume)
+        dispenseRoutine.start()
+
+
+
+
+
+        #while volume > 0:
+        #    if (volume > 0.1):
+        #        dispenseRoutine = Dispense(0.1)
+        #        dispenseRoutine.start()
+        #        volume -= 0.1
+        #    else:
+        #        dispenseRoutine = Dispense(volume)
+        #        dispenseRoutine.start()
+        #        volume = 0
+        #    time.sleep(1) # Pause for 1 second in-between
 
 
 

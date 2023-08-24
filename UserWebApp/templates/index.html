@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Welcome to Hell {% endblock %}</h1>
+    {% for user in users %}
+            <h2>{{ user['username'] }}</h2>
+        <hr>
+    {% endfor %}
+{% endblock %}

@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\CentralServerService",
+    "\\UserWebApp",
+    "\\UserWebApp\\static",
+    "\\UserWebApp\\templates",
     "\\WaterDispenserService"
   ],
-  "SelectedNode": "\\WaterDispenserService\\dispense_routine.py",
+  "SelectedNode": "\\CentralServerService\\app.py",
   "PreviewInSolutionExplorer": false
 }
