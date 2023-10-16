@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Hello {{user['username']}}! {% endblock %}</h1>
+<br>
+<br>
+<h3>{% block reserve %} Your water reserve: {{user['reserve']}} mL {% endblock %}</h3>
+<a href="{{ url_for('disp', username=user['username']) }}" class="btn btn-primary">Dispense</a>
+{% endblock %}

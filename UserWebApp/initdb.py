@@ -7,8 +7,8 @@ with open("schema.sql") as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO users (username, reserve) VALUES (?, ?)",
-            ('Admin', 1000)
+cur.execute("INSERT INTO users (username, password, reserve) VALUES (?, ?, ?)",
+            ('admin', '0000', 1000)
             )
 
 connection.commit()

@@ -8,7 +8,7 @@ from flask import Flask, render_template, Response
 from dispense_routine_time import Dispense
 import threading
 
-host= "10.247.197.70"
+host= "10.247.218.105"
 port = 28910
 
 Exit = False

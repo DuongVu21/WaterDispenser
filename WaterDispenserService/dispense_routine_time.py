@@ -6,7 +6,7 @@ FLOWRATE = 17.23 # mL/s
 
 class Dispense():
     def __init__(self, volume):
-        self.pump = Pump()
+        self.pump = Pump(14)
         self.sv = SV()
         self.dispenseVolume = volume * 1000 # L to mL
         self.dispenseTime = self.dispenseVolume/FLOWRATE
