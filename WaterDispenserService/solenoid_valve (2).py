@@ -17,9 +17,9 @@ class SV():
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    SV_test = SV(20)
+    SV_test = SV(21)
     SV_test.open()
-    time.sleep(10)
+    time.sleep(1)
     SV_test.close()
     # while True:
     #     SV_test.open()

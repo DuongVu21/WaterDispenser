@@ -27,7 +27,7 @@ class ClientCommunicator():
 
 
 if __name__ == "__main__":
-    message_communicator = ClientComunicator(dataType="message",host= "localhost", port = 12345)
+    message_communicator = ClientCommunicator(dataType="message",host= "localhost", port = 12345)
 
     command = message_communicator.recv_message()[:2];
 

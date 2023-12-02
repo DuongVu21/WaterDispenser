@@ -17,7 +17,7 @@ class Pump():
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    pump_test = Pump(14)
+    pump_test = Pump(26)
     pump_test.on()
     time.sleep(3)
     pump_test.off()

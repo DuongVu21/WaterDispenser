@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<select class="form-select" aria-label="Default select example">
-    <option selected>0</option>
-    <option valuehr="1">1</option>
-    <option valuehr="2">2</option>
-    <option valuehr="3">3</option>
-</select>
+<h1>{% block title %} Thank you for using ! {% endblock %}</h1>
+<br>
+<form method="post">
+    <select class="form-select" aria-label="Default select example" name="tsd">
+        <option selected value="0" >0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
 
-<select class="form-select" aria-label="Default select example">
-    <option selected>0</option>
-    <option valuetn="1">1</option>
-    <option valuetn="2">2</option>
-    <option valuetn="3">3</option>
-</select>
-
-<button type="submit" class="btn btn-primary">Confirm</button>
+    <select class="form-select" aria-label="Default select example" name="hrd">
+        <option selected value="0" >0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Confirm</button>
+</form>
 {% endblock %}

@@ -5,29 +5,30 @@ from socket_client import ClientCommunicator
 from flask import Flask, render_template, Response
 #from dispense_routine import Dispense
 #from dispense_routine_itg import Dispense
-from dispense_routine_time import Dispense
+from dispense_routine_weight import Dispense
+from weight_sensor import weightSensor
 import threading
 
-host= "10.247.218.105"
-port = 28910
+host= "192.168.137.1"
+port = 28710
 
 Exit = False
+wSensor1 = weightSensor(5, 6, -2134)
+wSensor2 = weightSensor(19, 13, 103)
 message_communicator = ClientCommunicator(host, port, "message")
 
 while Exit != True:
     volume = float(message_communicator.recv_message())
-
     # End program if volume received is 0 or less
     if volume <= 0:
         Exit = True
 
     #Dispense water in 100mL increments
     else: 
-        print("Dispensing %.3f L of water" % (volume))
-        dispenseRoutine = Dispense(volume)
+        print("Dispensing %.0f mL of water" % (volume))
+        dispenseRoutine = Dispense(volume, wSensor1, wSensor2)
         dispenseRoutine.start()
-
-
+        
 
 
 

@@ -1,3 +1,4 @@
+from distutils.util import execute
 from flask import Flask, render_template, request, url_for, flash, redirect # Flask is the web framework
 import sqlite3 # sqlite3 is the database framework
 from werkzeug.exceptions import abort # For handling errors
@@ -18,6 +19,12 @@ def get_user(username):
         abort(404)
     return user
 
+def update_reserve(username, new_res):
+    conn = get_db_connection()
+    conn.execute("'UPDATE users SET reserve = ? WHERE username = ?'", 
+                                        (new_res, username))
+    
+    conn.close()
 # Create a webapp instance
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vskey'
@@ -70,10 +77,22 @@ def user(username):
     user = get_user(username)
     return render_template('user.html', user=user)
 
-@app.route('/user/<string:username>/disp')
+@app.route('/user/<string:username>/disp', methods=('GET', 'POST'))
 def disp(username):
     user = get_user(username)
-    return render_template('dispense.html', user=user)
+    if request.method == 'POST':
+        thousands = int(request.form.get('tsd'))
+        hundreds = int(request.form.get('hrd'))
+        volume = (thousands*1000) + (hundreds*100)
+        if volume < user[4]:
+            flash('Insufficient account reserve!')
+        else:
+            tempReserve = user[4]
+            tempReserve -= volume
+        return render_template('dispenseComplete.html', user=user)
+        
+    else:
+        return render_template('dispense.html', user=user)
 
 if __name__ =="__main__":
     app.run(debug = False)

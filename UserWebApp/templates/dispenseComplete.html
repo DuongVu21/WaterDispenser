@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h3>{% block message %} Dispensation completed!
+    <br>
+    Thank you for using!
+    {% endblock %}
+</h3>
+<a href="{{ url_for('user', username=user['username']) }}" class="btn btn-primary">Return</a>
+{% endblock %}

@@ -11,8 +11,12 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('login')}}">Water Refill</a> <!--url_for() creates a hyperlink, we pass it a function name-->
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/static/58070203593888a8a2bbe5874b05301d.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Dispenser
+        </a>
     </nav>
     <div class="container">
         {% for message in get_flashed_messages() %}
