@@ -4,6 +4,6 @@
     "\\CentralServerService",
     "\\WaterDispenserService"
   ],
-  "SelectedNode": "\\CentralServerService\\app.py",
+  "SelectedNode": "\\WaterDispenserService\\dispense_routine_weight.py",
   "PreviewInSolutionExplorer": false
 }

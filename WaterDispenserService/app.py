@@ -9,11 +9,11 @@ from dispense_routine_weight import Dispense
 from weight_sensor import weightSensor
 import threading
 
-host= "192.168.137.1"
+host= "10.247.194.157"
 port = 28710
 
 Exit = False
-wSensor1 = weightSensor(5, 6, -2134)
+wSensor1 = weightSensor(5, 6, -2300)
 wSensor2 = weightSensor(19, 13, 103)
 message_communicator = ClientCommunicator(host, port, "message")
 

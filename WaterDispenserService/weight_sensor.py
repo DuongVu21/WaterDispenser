@@ -36,10 +36,8 @@ class weightSensor():
     def getWeight(self):
         val = self.hx.get_weight(5)
 
-        if (val < (self.preVal - 100)):
-            val = self.preVal
-        elif (self.preVal - val) > 1000:
-            val = self.preVal
+        if (val < (self.preVal - 300)):
+            val = (self.preVal + val)/2
         else:
             self.preVal = val
         
