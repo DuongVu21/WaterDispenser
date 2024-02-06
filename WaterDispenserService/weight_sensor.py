@@ -3,6 +3,15 @@ from hx711 import HX711
 import time
 import sys
 
+class sensorPair():
+    def __init__(self, weightSensor1, weightSensor2):
+        self.weightSensor1 = weightSensor1
+        self.weightSensor2 = weightSensor2
+        
+    def getWeight(self):
+        combinWgt = self.weightSensor1.getWeight() + self.weightSensor2.getWeight()
+        return combinWgt
+
 class weightSensor():
     def __init__(self, dout = 5, pd_sck = 6, ref = 103):
         self.hx = HX711(dout, pd_sck)

@@ -4,7 +4,7 @@ from flask import Flask, render_template, Response
 import threading
 
 erIp = "10.247.169.31"
-NitroIP = "10.247.194.157"
+NitroIP = "10.247.134.69"
 port = 28710
 
 # Create a server socket for sending and receiving messages

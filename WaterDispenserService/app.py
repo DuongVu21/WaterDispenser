@@ -6,15 +6,15 @@ from flask import Flask, render_template, Response
 #from dispense_routine import Dispense
 #from dispense_routine_itg import Dispense
 from dispense_routine_weight import Dispense
-from weight_sensor import weightSensor
+from weight_sensor import weightSensor, sensorPair
 import threading
 
 host= "10.247.194.157"
 port = 28710
 
 Exit = False
-wSensor1 = weightSensor(5, 6, -2300)
-wSensor2 = weightSensor(19, 13, 103)
+#wSensor1 = weightSensor(5, 6, -2300)
+
 message_communicator = ClientCommunicator(host, port, "message")
 
 while Exit != True:
@@ -26,7 +26,7 @@ while Exit != True:
     #Dispense water in 100mL increments
     else: 
         print("Dispensing %.0f mL of water" % (volume))
-        dispenseRoutine = Dispense(volume, wSensor1, wSensor2)
+        dispenseRoutine = Dispense(volume)
         dispenseRoutine.start()
         
 
