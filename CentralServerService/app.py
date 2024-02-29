@@ -3,12 +3,11 @@ from socket_server import ServerCommunicator
 from flask import Flask, render_template, Response
 import threading
 
-erIp = "10.247.169.31"
-NitroIP = "10.247.134.69"
+IPAdr = "10.247.201.235"
 port = 28710
 
 # Create a server socket for sending and receiving messages
-communicator = ServerCommunicator(NitroIP, port, "message")
+communicator = ServerCommunicator(IPAdr, port, "message")
 Exit = False
 
 # While loop to keep program running

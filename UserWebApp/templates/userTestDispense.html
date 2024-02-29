@@ -9,7 +9,6 @@
     <li class="list-group-item">Type amount of water you want (in mL) in the box below.</li>
     <li class="list-group-item">Click "Dispense" button to receive water.</li>
     <li class="list-group-item">Wait until the water stop flowing before removing the container.</li>
-    <li class="list-group-item">Water flow can be stopped by manually turning the tap.</li>
 </ol>
 <div class="row align-items-center">
     <div class="col-md-4">
@@ -17,10 +16,21 @@
     <div class="col-md-4">
         <br>
         <form method="post">
+            <select class="form-select" aria-label="Default select example" name="hrd">
+                <option selected value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            00 mL
             <div class="mb-3">
-                <label for="amount">Amount</label>
-                <input type="text" name="amount" placeholder="E.g: &quot;100&quot;" class="form-control"
-                       value="{{ request.form['amount']}}">
             </div>
 
             <button type="submit" class="btn btn-primary">Dispense</button>

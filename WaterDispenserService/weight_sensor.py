@@ -45,10 +45,10 @@ class weightSensor():
     def getWeight(self):
         val = self.hx.get_weight(5)
 
-        if (val < (self.preVal - 300)):
-            val = (self.preVal + val)/2
-        else:
-            self.preVal = val
+        # if (val < (self.preVal - 300)):
+        #     val = (self.preVal + val)/2
+        # else:
+        #     self.preVal = val
         
         self.hx.power_down()
         self.hx.power_up()
@@ -65,6 +65,7 @@ class weightSensor():
 
 if __name__ == "__main__":
     testSensor = weightSensor()
+    # cnc tool holder: 1892 gram
     while True:
         try:
             val = testSensor.getWeight()

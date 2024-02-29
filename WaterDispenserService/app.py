@@ -3,13 +3,13 @@ from ast import Try
 import socket, time
 from socket_client import ClientCommunicator
 from flask import Flask, render_template, Response
-#from dispense_routine import Dispense
-#from dispense_routine_itg import Dispense
-from dispense_routine_weight import Dispense
-from weight_sensor import weightSensor, sensorPair
+# from dispense_routine import Dispense
+# from dispense_routine_itg import Dispense
+# from dispense_routine_weight import Dispense
+from dispense_routine_time_weight_check import Dispense
 import threading
 
-host= "10.247.194.157"
+host= "10.247.201.235"
 port = 28710
 
 Exit = False

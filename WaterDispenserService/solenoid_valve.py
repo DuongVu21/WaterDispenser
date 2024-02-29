@@ -6,6 +6,7 @@ class SV():
         self.pin = pin
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.OUT)
+        GPIO.output(self.pin, GPIO.HIGH)
 
     def open(self):
         GPIO.output(self.pin, GPIO.LOW)

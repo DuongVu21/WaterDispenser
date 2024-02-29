@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\CentralServerService",
+    "\\UserWebApp",
+    "\\UserWebApp\\templates",
     "\\WaterDispenserService"
   ],
-  "SelectedNode": "\\WaterDispenserService\\dispense_routine_time_weight_check.py",
+  "SelectedNode": "\\WaterDispenserService\\app.py",
   "PreviewInSolutionExplorer": false
 }

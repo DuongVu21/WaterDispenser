@@ -3,7 +3,7 @@ import sqlite3 # sqlite3 is the database framework
 from werkzeug.exceptions import abort # For handling errors
 from socket_server import ServerCommunicator
 
-NitroIP = "10.247.217.137"
+NitroIP = "10.247.201.235"
 port = 28710
 
 # Create a webapp instance
@@ -18,8 +18,8 @@ def userTestDispense():
     if request.method == 'POST':
 
         
-        amount = request.form['amount']
-        if (amount):
+        amount = int(request.form.get('hrd')) * 100
+        if (amount >= 0):
             # enter 0 or exit to end program
             if amount == "0" or amount == "exit":
                 communicator.send_message("-1")
@@ -27,12 +27,13 @@ def userTestDispense():
             # send message if amount is positive
             elif float(amount) > 0:
         
-                communicator.send_message(amount)
+                communicator.send_message(str(amount))
+            print(amount)
         return render_template('userTestEnd.html')
     else: 
         return render_template('userTestDispense.html')
 
 if __name__ == "__main__":
     # Create a server socket for sending and receiving messages
-    communicator = ServerCommunicator(NitroIP, port, "message")
+    # communicator = ServerCommunicator(NitroIP, port, "message")
     app.run(debug = False)
