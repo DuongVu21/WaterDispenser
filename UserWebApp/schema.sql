@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    username TEXT NOT NULL,
-    password TEXT NOT NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
     reserve INT
 );

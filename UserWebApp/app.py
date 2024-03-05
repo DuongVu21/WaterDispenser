@@ -2,6 +2,11 @@ from distutils.util import execute
 from flask import Flask, render_template, request, url_for, flash, redirect # Flask is the web framework
 import sqlite3 # sqlite3 is the database framework
 from werkzeug.exceptions import abort # For handling errors
+from socket_server import ServerCommunicator
+import time
+
+NitroIP = "10.247.201.235"
+port = 28710
 
 # Function to connect to database
 def get_db_connection():
@@ -21,9 +26,10 @@ def get_user(username):
 
 def update_reserve(username, new_res):
     conn = get_db_connection()
-    conn.execute("'UPDATE users SET reserve = ? WHERE username = ?'", 
+    cur = conn.cursor()
+    cur.execute("UPDATE users SET reserve = ? WHERE username = ?", 
                                         (new_res, username))
-    
+    conn.commit()
     conn.close()
 # Create a webapp instance
 app = Flask(__name__)
@@ -80,19 +86,30 @@ def user(username):
 @app.route('/user/<string:username>/disp', methods=('GET', 'POST'))
 def disp(username):
     user = get_user(username)
+    print(user[4])
     if request.method == 'POST':
-        thousands = int(request.form.get('tsd'))
-        hundreds = int(request.form.get('hrd'))
-        volume = (thousands*1000) + (hundreds*100)
-        if volume < user[4]:
-            flash('Insufficient account reserve!')
+        amount = int(request.form.get('hrd')) * 100
+        if amount > user[4]:
+            return render_template('insufficient.html', user=user)
         else:
             tempReserve = user[4]
-            tempReserve -= volume
-        return render_template('dispenseComplete.html', user=user)
+            tempReserve -= amount
+            update_reserve(user[2], tempReserve)
+            # # enter 0 or exit to end program
+            # if amount == "0" or amount == "exit":
+            #     communicator.send_message("-1")
+
+            # # send message if amount is positive
+            # elif float(amount) > 0:
+        
+            #     communicator.send_message(str(amount))
+            time.sleep(amount/28.8)
+            return render_template('dispenseComplete.html', user=user)
         
     else:
         return render_template('dispense.html', user=user)
 
-if __name__ =="__main__":
+if __name__ == "__main__":
+    # Create a server socket for sending and receiving messages
+    # communicator = ServerCommunicator(NitroIP, port, "message")
     app.run(debug = False)

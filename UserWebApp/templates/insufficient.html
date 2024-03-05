@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h3>
+    {% block message %} Insufficient account reserve!
+    <br>
+    Please top up your account!
+    {% endblock %}
+</h3>
+<a href="{{ url_for('user', username=user['username']) }}" class="btn btn-primary">Return</a>
+{% endblock %}

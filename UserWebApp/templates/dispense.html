@@ -1,22 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{% block title %} Thank you for using ! {% endblock %}</h1>
-<br>
-<form method="post">
-    <select class="form-select" aria-label="Default select example" name="tsd">
-        <option selected value="0" >0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
 
-    <select class="form-select" aria-label="Default select example" name="hrd">
-        <option selected value="0" >0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <button type="submit" class="btn btn-primary">Confirm</button>
-</form>
+<h1>{% block title %} Instruction {% endblock %}</h1>
+<hr>
+<ol class="list-group list-group-flush">
+    <li class="list-group-item">Place container under water tap.</li>
+    <li class="list-group-item">Select amount of water you want (in x100 mL) in the box below.</li>
+    <li class="list-group-item">Click "Dispense" button to receive water.</li>
+    <li class="list-group-item">Wait until the water stop flowing before removing the container.</li>
+</ol>
+<div class="row align-items-center">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <br>
+        <form method="post">
+            <select class="form-select" aria-label="Default select example" name="hrd">
+                <option selected value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            00 mL
+            <div class="mb-3">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Dispense</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
 {% endblock %}

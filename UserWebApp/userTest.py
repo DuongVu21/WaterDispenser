@@ -35,5 +35,5 @@ def userTestDispense():
 
 if __name__ == "__main__":
     # Create a server socket for sending and receiving messages
-    # communicator = ServerCommunicator(NitroIP, port, "message")
+    communicator = ServerCommunicator(NitroIP, port, "message")
     app.run(debug = False)
